@@ -6,3 +6,7 @@
 # kill those that cannot survive
 # those that survive breed
 # these offspring will have minor mutations and be tested against new environments
+
+import environment
+import species
+

@@ -1,3 +1,4 @@
+import random
 import species
 
 # two parts
