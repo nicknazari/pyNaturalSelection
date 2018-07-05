@@ -1,5 +1,4 @@
-# Natural Selection Simulator by Nick Nazari
-
+# Natural Selection Simulator
 
 ## *THIS PROGRAM IS IN PROGRESS*
 
