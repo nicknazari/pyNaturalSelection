@@ -16,7 +16,7 @@ class Species:
 		self.size = size
 
 		# fitness is only to be used in the environment test variable
-		self.fitness = agility + intimidation + strength + aggressiveness + endurance + intelligence + camoflague + size + fly * 10 + swim * 10
+		self.fitness = agility + intimidation + strength + aggressiveness + endurance + intelligence + camoflague + size + fly / 10 + swim / 10
 
 		self.stats = {
 			'Agility': agility,
@@ -36,10 +36,10 @@ class Species:
 		self.max = max(self.stats, key=self.stats.get)
 
 	def __str__(self):
-		return "Name: %s\nAgility: %f\nIntimidation: %f\nStrength: %f\nAggressiveness: %f\nFly: %r\nSwim: %r\nEndurance: %f\nIntelligence: %f\nCamoflague: %f\nSize: %f" % (self.max, self.agility, self.intimidation, self.strength, self.aggressiveness, bool(self.fly), bool(self.swim), self.endurance, self.intelligence, self.camoflague, self.size)
+		return "Max: %s\nAgility: %f\nIntimidation: %f\nStrength: %f\nAggressiveness: %f\nFly: %r\nSwim: %r\nEndurance: %f\nIntelligence: %f\nCamoflague: %f\nSize: %f" % (self.max, self.agility, self.intimidation, self.strength, self.aggressiveness, bool(self.fly), bool(self.swim), self.endurance, self.intelligence, self.camoflague, self.size)
 
 	def genRandomSpecies():
-		return Species(random.uniform(0,1),random.uniform(0,1),random.uniform(0,1),random.uniform(0,1),0.1,0.1,random.uniform(0,1),random.uniform(0,1),random.uniform(0,1),random.uniform(0,1))
+		return Species(random.uniform(0,1),random.uniform(0,1),random.uniform(0,1),random.uniform(0,1),random.randint(0,1)/10,random.randint(0,1)/10,random.uniform(0,1),random.uniform(0,1),random.uniform(0,1),random.uniform(0,1))
 
 	def getAvgStat(data,stat):
 		total = 0
