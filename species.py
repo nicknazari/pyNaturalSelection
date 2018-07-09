@@ -1,5 +1,5 @@
 import random
-import environment
+from environment import Environment
 
 class Species:
 
@@ -14,6 +14,9 @@ class Species:
 		self.intelligence = intelligence
 		self.camoflague = camoflague
 		self.size = size
+
+		# fitness is only to be used in the environment test variable
+		self.fitness = agility + intimidation + strength + aggressiveness + endurance + intelligence + camoflague + size + fly * 10 + swim * 10
 
 		self.stats = {
 			'Agility': agility,
@@ -49,9 +52,24 @@ class Species:
 
 		return average
 
+
+	def testAgainst(self,environment):
+
+		# this ensures that there is variance when the test is done.
+		variance_modifier = environment.modifier + random.uniform(-1,1)
+
+		# the result of this determines whether or not the species survives. if negative, the species does not survive
+		test = self.fitness + environment.modifier
+
+		if test > 0:
+			return True
+		if test < 0:
+			return False
+		
+
 if __name__ == '__main__':
 
-	testSpecies = Species(0.24,0.45,0.3,0.12,.1,.1,0.89,0.46,0.26,0.33)
+	testSpecies = Species(0.24,0.45,0.3,0.12,.1,0,0.89,0.46,0.26,0.33)
 	# all max values
 
 	collection = []
@@ -61,3 +79,8 @@ if __name__ == '__main__':
 
 	print(Species.getAvgStat(collection,'Size'))
 
+	harshEnvironment = Environment(-5)
+
+	print('fitness: ' + str(testSpecies.fitness))
+	
+	print(testSpecies.testAgainst(harshEnvironment))
