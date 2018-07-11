@@ -3,7 +3,7 @@
 # timeline:
 # DONE - generate species, many variations
 # DONE - test against certain environments
-# kill those that cannot survive
+# DONE - kill those that cannot survive
 # those that survive breed
 # these offspring will have minor mutations and be tested against new environments
 
@@ -23,36 +23,24 @@ eBeneficial = Environment(1)
 
 environments = [eBeneficial,ePeaceful,eEasy,eSemiModerate,eModerate,eSemiHarsh,eHarsh]
 
-speciesList = []
+def dataset(amount):
+	data = []
+	for num in range(0,amount):
+		data.append(Species.genRandomSpecies())
+	return data
 
-for num in range(0,1000000):
-	speciesList.append(Species.genRandomSpecies())
+def testAndKill(data,environment):
+	for species in data:
+		position = 0
+		if species.testAgainst(environments[environment]) == False:
+			del data[position]
+		position += 1
 
+	return data
+
+speciesList = dataset(100000)
 print(len(speciesList))
 
-for species in speciesList:
-	position = 0
-	if species.testAgainst(environments[6]) == False:
-		del speciesList[position]
-	
-	position += 1
-
-print(len(speciesList))
-
-for species in speciesList:
-	position = 0
-	if species.testAgainst(environments[6]) == False:
-		del speciesList[position]
-	
-	position += 1
-
-print(len(speciesList))
-
-for species in speciesList:
-	position = 0
-	if species.testAgainst(environments[6]) == False:
-		del speciesList[position]
-	
-	position += 1
-
-print(len(speciesList))
+for num in range(0,40):
+	speciesList = testAndKill(speciesList,6)
+	print(len(speciesList))
